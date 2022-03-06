@@ -2,6 +2,11 @@
 
 Label data easily!
 
+## Installation
+```
+pip install betag
+```
+
 ## Usage
 ### Single choice data set labelling
 ```
@@ -19,7 +24,7 @@ optional arguments:
 
 ## Running locally
 ```bash
-poetry betag
+poetry run betag
 ```
 
 ## Development setup
