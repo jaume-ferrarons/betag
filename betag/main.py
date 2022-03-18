@@ -2,11 +2,16 @@ import os
 import streamlit.bootstrap
 from streamlit import config as _config
 import argparse
+import betag
 
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="Data tagging tool.")
-    subparsers = parser.add_subparsers(help="Tagging mode.", dest="mode", required=True)
+    parser.add_argument("--version", action="store_true", help="Prints current version")
+
+    subparsers = parser.add_subparsers(
+        help="Tagging mode.", dest="mode", required=False
+    )
 
     choice_parser = subparsers.add_parser(
         "choice", help="Classify data in non-overlapping classes."
@@ -24,12 +29,17 @@ def parse_arguments():
     choice_parser.add_argument(
         "--labels", type=str, help="Comma separated labels", required=True
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if not args.version and args.mode is None:
+        parser.error("the following arguments are required: mode")
+    return args
 
 
 def cli():
     args = parse_arguments()
-    if args.mode == "choice":
+    if args.version:
+        print(f"Betag version: {betag.__version__}")
+    elif args.mode == "choice":
 
         dirname = os.path.dirname(__file__)
         filename = os.path.join(dirname, "choice.py")
