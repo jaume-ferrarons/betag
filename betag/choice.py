@@ -12,7 +12,7 @@ HISTORY_KEY = "history"
 
 argv = sys.argv
 input_path = argv[1]
-text_column = argv[2]
+text_column = argv[2].split(",")
 label_column = argv[3]
 options = argv[4].split(",")
 
@@ -38,7 +38,7 @@ def get_random_index(df) -> int:
 
 
 def get_text(index: int) -> str:
-    return df[text_column].iloc[index]
+    return df[text_column[0]].iloc[index]
 
 
 def label_example(index: int, option: str):
@@ -86,7 +86,8 @@ index = get_index()
 if index is None:
     st.header("Nothing left to label!")
 else:
-    st.header(df[text_column].iloc[index])
+    for c in text_column:
+        st.markdown(f"{c}: **{df[c].iloc[index]}**")
     cols = st.columns([1] * len(options))
 
     for i, option in enumerate(options):

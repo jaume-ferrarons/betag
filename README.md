@@ -17,7 +17,7 @@ positional arguments:
 
 optional arguments:
   -h, --help       show this help message and exit
-  --source SOURCE  Name of the column to be labelled
+  --source SOURCE  Name of the column or columns (comma separated) to be labelled
   --target TARGET  Name of the column to store labels to
   --labels LABELS  Comma separated labels
 ```

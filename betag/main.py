@@ -18,7 +18,10 @@ def parse_arguments():
     )
     choice_parser.add_argument("path", type=str, help="Path to the *csv file to label")
     choice_parser.add_argument(
-        "--source", type=str, help="Name of the column to be labelled", required=True
+        "--source",
+        type=str,
+        help="Name of the column or columns (comma separated) to be labelled",
+        required=True,
     )
     choice_parser.add_argument(
         "--target",
